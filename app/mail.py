@@ -46,6 +46,7 @@ def send(to, subject, content):
     from_email = Email(current_app.config['FROM_EMAIL'])
     to_email = To(to)
     content = Content('text/plain',content)
-    mail = Mail(from_email, to_email, subject, content)
+    mail = Mail(from_email=from_email, to_emails=to_email, subject=subject, plain_text_content=content)
+    # mail = Mail(from_email, to_email, subject, content)
     response = sg.client.mail.send.post(request_body=mail.get())
     print(response)
